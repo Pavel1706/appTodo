@@ -14,6 +14,7 @@ import {Todolist} from "./Todolist/Todolist";
 import {FilterValuesType} from "../../app/App";
 
 type TodolistsListType ={
+
 }
 
 
