@@ -1,17 +1,17 @@
 import {Button, IconButton} from '@material-ui/core';
 import {Delete} from '@material-ui/icons';
 import React, {useCallback, useEffect} from 'react';
-import {AddItem} from './AddItem';
-import {FilterValuesType} from './AppWithRedux';
-import {ChangeInput} from './ChangeInput';
-import {AppRootState} from "./state/store";
-import { addTaskTC, getTasksTC} from "./state/tasks-reducer";
+import {AddItem} from '../../../components/AddItem/AddItem';
+import {FilterValuesType} from '../../../app/App';
+import {ChangeInput} from '../../../components/EditableSpan/ChangeInput';
+import {AppRootState} from "../../../app/store";
+import { addTaskTC, getTasksTC} from "../tasks-reducer";
 
 import {useDispatch, useSelector} from 'react-redux';
 
-import {TaskStatuses, TaskType} from "./API/todolists-api";
+import {TaskStatuses, TaskType} from "../../../API/todolists-api";
 
-import {Task} from "./state/Task";
+import {Task} from "./Task/Task";
 
 
 type PropsType = {
@@ -65,7 +65,6 @@ export const Todolist = React.memo((props: PropsType) => {
         </h3>
         <AddItem addItem={addTask}/>
         <ul>
-
             {
                 tasksForTodolist.map(t => <Task
                     key={t.id}
