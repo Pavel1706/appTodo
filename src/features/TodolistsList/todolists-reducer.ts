@@ -1,4 +1,3 @@
-
 import {todolistsAPI, TodolistType} from "../../API/todolists-api";
 import { Dispatch } from "redux";
 
@@ -82,7 +81,6 @@ export const deleteTodolistTC=(todolistId:string)=>(dispatch:Dispatch<AllActionT
 export const changeTodolistTitleTC=(id:string,title:string)=>(dispatch:Dispatch<AllActionType>)=>{
     todolistsAPI.updateTodolist(id,title)
         .then ((res)=> {
-
             dispatch(changeTodolistTitleAC(id,title))
         } )
 }

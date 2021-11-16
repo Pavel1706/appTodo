@@ -1,21 +1,9 @@
-import React, {useCallback, useEffect} from 'react';
+import React from 'react';
 import './App.css';
-import {Todolist} from '../features/TodolistsList/Todolist/Todolist';
-import {AddItem} from "../components/AddItem/AddItem";
 import AppBar from '@material-ui/core/AppBar';
 import IconButton from '@material-ui/core/IconButton';
 import {Menu} from '@material-ui/icons';
-import {Button, Container, Grid, Paper, Toolbar, Typography} from '@material-ui/core';
-import {
-    changeTodolistFilterAC,
-    changeTodolistTitleTC,
-    createTodolistsTC,
-    deleteTodolistTC,
-    getTodolistsTC,
-    TodolistDomainType,
-} from "../features/TodolistsList/todolists-reducer";
-import {useDispatch, useSelector} from 'react-redux';
-import {AppRootState} from "./store";
+import {Button, Container, Toolbar, Typography} from '@material-ui/core';
 import {TaskType} from '../API/todolists-api';
 import {TodolistsList} from "../features/TodolistsList/TodolistsList";
 
