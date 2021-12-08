@@ -1,6 +1,5 @@
 import {deleteTaskTC, updateTaskTC} from "../../tasks-reducer";
 import {ChangeInput} from "../../../../components/EditableSpan/ChangeInput";
-
 import {useDispatch} from "react-redux";
 import React, {ChangeEvent, useCallback} from 'react';
 import {Checkbox, IconButton} from "@material-ui/core";
