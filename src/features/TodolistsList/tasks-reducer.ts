@@ -96,14 +96,6 @@ export const addTaskTC=(title:string,todolistId:string)=>(dispatch:Dispatch<AllT
         })
 }
 
-export type UpdateDomainTaskModelType = {
-    title?: string
-    description?: string
-    status?: TaskStatuses
-    priority?: TaskPriorities
-    startDate?: string
-    deadline?: string
-}
 
 
 
@@ -130,6 +122,17 @@ export const updateTaskTC=(taskId:string, domainModel:UpdateDomainTaskModelType,
             dispatch(action)
         })
 }
+
+
+export type UpdateDomainTaskModelType = {
+    title?: string
+    description?: string
+    status?: TaskStatuses
+    priority?: TaskPriorities
+    startDate?: string
+    deadline?: string
+}
+
 
 type AllTasksReducerType =
     ReturnType<typeof removeTaskAC>
