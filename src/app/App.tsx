@@ -3,9 +3,10 @@ import './App.css';
 import AppBar from '@material-ui/core/AppBar';
 import IconButton from '@material-ui/core/IconButton';
 import {Menu} from '@material-ui/icons';
-import {Button, Container, Toolbar, Typography} from '@material-ui/core';
+import {Button, Container, LinearProgress, Toolbar, Typography} from '@material-ui/core';
 import {TaskType} from '../API/todolists-api';
 import {TodolistsList} from "../features/TodolistsList/TodolistsList";
+import {ErrorSnackBar} from "../components/ErrorSnackBar/ErrorSnackBar";
 
 export type FilterValuesType = "all" | "active" | "completed";
 
@@ -20,6 +21,7 @@ function App() {
 
     return (
         <div className="App">
+            <ErrorSnackBar/>
             <AppBar position="static">
                 <Toolbar>
                     <IconButton edge="start" color="inherit" aria-label="menu">
@@ -30,6 +32,7 @@ function App() {
                     </Typography>
                     <Button color="inherit">Login</Button>
                 </Toolbar>
+                <LinearProgress/>
             </AppBar>
             <Container fixed>
                 <TodolistsList/>
