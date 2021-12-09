@@ -7,6 +7,9 @@ import {Button, Container, LinearProgress, Toolbar, Typography} from '@material-
 import {TaskType} from '../API/todolists-api';
 import {TodolistsList} from "../features/TodolistsList/TodolistsList";
 import {ErrorSnackBar} from "../components/ErrorSnackBar/ErrorSnackBar";
+import {useSelector} from "react-redux";
+import {AppRootState} from "./store";
+import {RequestStatusType} from "./app-reducer";
 
 export type FilterValuesType = "all" | "active" | "completed";
 
@@ -17,7 +20,7 @@ export type TasksStateType = {
 
 
 function App() {
-
+    const status = useSelector<AppRootState, RequestStatusType>((state) => state.app.status)
 
     return (
         <div className="App">
@@ -32,7 +35,7 @@ function App() {
                     </Typography>
                     <Button color="inherit">Login</Button>
                 </Toolbar>
-                <LinearProgress/>
+                {status === 'loading' && <LinearProgress/>}
             </AppBar>
             <Container fixed>
                 <TodolistsList/>
