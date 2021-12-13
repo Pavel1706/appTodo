@@ -3,7 +3,8 @@ import {TasksStateType} from "../../app/App";
 import {AddTodolistType, removeTodolistType, SetTodolistType} from "./todolists-reducer";
 import {TaskPriorities, TaskStatuses, TaskType, todolistsAPI, UpdateTaskModelType} from "../../API/todolists-api";
 import {AppRootState} from "../../app/store";
-import {setErrorAC, SetErrorType, setStatusAC, SetStatusType} from "../../app/app-reducer";
+import {setErrorAC, SetAppErrorType, setStatusAC, SetAppStatusType} from "../../app/app-reducer";
+import {handleServerAppError, handleServerNetworkError} from "../../utils/error-utils";
 
 
 const initialState: TasksStateType = {}
@@ -102,14 +103,19 @@ export const addTaskTC = (title: string, todolistId: string) => (dispatch: Dispa
                 dispatch(action)
                 dispatch(setStatusAC('succeeded'))
             } else {
-                if (res.data.messages.length) {
-                    dispatch(setErrorAC(res.data.messages[0]))
-                } else {
-                    dispatch(setErrorAC('Some error occurred'))
-                }
-                dispatch(setStatusAC('failed'))
+                handleServerAppError(res.data, dispatch)
+                // if (res.data.messages.length) {
+                //     dispatch(setErrorAC(res.data.messages[0]))
+                // } else {
+                //     dispatch(setErrorAC('Some error occurred'))
+                // }
+                // dispatch(setStatusAC('failed'))
             }
-
+        })
+        .catch((error)=>{
+            handleServerNetworkError(error, dispatch)
+            // dispatch(setErrorAC(error.message))
+            // dispatch(setStatusAC('failed'))
         })
 }
 
@@ -133,8 +139,23 @@ export const updateTaskTC = (taskId: string, domainModel: UpdateDomainTaskModelT
         }
         return todolistsAPI.updateTask(todolistId, taskId, apiModel)
             .then(res => {
+                if(res.data.resultCode ===0){
                 const action = updateTaskAC(taskId, domainModel, todolistId)
                 dispatch(action)
+                } else {
+                    handleServerAppError(res.data, dispatch)
+                //     if (res.data.messages.length) {
+                //         dispatch(setErrorAC(res.data.messages[0]))
+                //     } else {
+                //         dispatch(setErrorAC('Some error occurred'))
+                //     }
+                //     dispatch(setStatusAC('failed'))
+                }
+            })
+            .catch((error)=>{
+                handleServerNetworkError(error, dispatch)
+                // dispatch(setErrorAC(error.message))
+                // dispatch(setStatusAC('failed'))
             })
     }
 
@@ -157,5 +178,5 @@ type AllTasksReducerType =
     | removeTodolistType
     | SetTodolistType
     | ReturnType<typeof setTasksAC>
-    | SetErrorType
-    | SetStatusType
+    | SetAppErrorType
+    | SetAppStatusType
