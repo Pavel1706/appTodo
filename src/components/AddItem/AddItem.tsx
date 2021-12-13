@@ -5,9 +5,10 @@ import React, {ChangeEvent, KeyboardEvent, useState} from "react";
 
 type AddItemType = {
     addItem: (title: string) => void
+    disabled?:boolean
 }
 
-export const AddItem = React.memo((props: AddItemType) => {
+export const AddItem = React.memo(({addItem,disabled=false}: AddItemType) => {
     console.log('addItem is called')
     let [title, setTitle] = useState("")
     let [error, setError] = useState<string | null>(null)
@@ -16,7 +17,7 @@ export const AddItem = React.memo((props: AddItemType) => {
     const addTask = () => {
         let newTitle = title.trim();
         if (newTitle !== "") {
-            props.addItem(newTitle);
+           addItem(newTitle);
             setTitle("");
         } else {
             setError("Title is required");
@@ -39,6 +40,7 @@ export const AddItem = React.memo((props: AddItemType) => {
 
     return <div>
         <TextField value={title}
+                   disabled={disabled}
                    variant={'outlined'}
                    label={'Type value'}
                    onChange={onChangeHandler}
@@ -46,7 +48,7 @@ export const AddItem = React.memo((props: AddItemType) => {
                    error={!!error}
                    helperText={error}
         />
-        <IconButton onClick={addTask} color={'primary'}>
+        <IconButton onClick={addTask} color={'primary'} disabled={disabled}>
             <ControlPoint/>
         </IconButton>
 
