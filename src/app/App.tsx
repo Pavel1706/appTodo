@@ -51,8 +51,6 @@ function App({demo = false}: PropsType) {
     }
 
 
-
-
     return (
         <BrowserRouter>
             <div className="App">
