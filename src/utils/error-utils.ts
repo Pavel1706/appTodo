@@ -1,5 +1,5 @@
 import {SetAppErrorType, SetAppStatusType, setErrorAC, setStatusAC} from "../app/app-reducer";
-import {ResponseType, TaskType} from '../API/todolists-api'
+import {ResponseType} from '../API/todolists-api'
 import {Dispatch} from "redux";
 
 
