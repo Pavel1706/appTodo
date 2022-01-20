@@ -27,7 +27,6 @@ export const TodolistsList: React.FC<TodolistsListType> = ({demo = false}) => {
             return
         }
         dispatch(getTodolistsTC())
-
     }, [])
 
     console.log('app is called')
