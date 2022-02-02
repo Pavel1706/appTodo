@@ -15,7 +15,6 @@ export const ChangeInput = React.memo( function (props:changeInputType){
 
     function Active(){
         setEditMode(true)
-        // setTitle(title)
     }
     function View(){
         setEditMode(false)
@@ -28,7 +27,6 @@ export const ChangeInput = React.memo( function (props:changeInputType){
     function EnterInput(e:KeyboardEvent<HTMLInputElement>){
         console.log(e.charCode)
         if(e.charCode===13) {
-            // View()
             setEditMode(false)
             props.onChange(title)
         }

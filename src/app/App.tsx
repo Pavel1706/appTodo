@@ -43,7 +43,6 @@ function App({demo = false}: PropsType) {
         dispatch(logOutTC())
     },[])
 
-
     if (!initialized) {
         return <div style={{position: "fixed", top: "30%", textAlign: "center", width: "100%"}}>
             <CircularProgress/>
