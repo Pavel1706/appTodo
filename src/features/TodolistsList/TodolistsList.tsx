@@ -41,8 +41,6 @@ export const TodolistsList: React.FC<TodolistsListType> = ({demo = false}) => {
 
     const removeTodolist = useCallback((id: string) => {
         dispatch(deleteTodolistTC(id))
-  
-
     }, [dispatch])
 
     const addItem = useCallback((Newtitle: string) => {
