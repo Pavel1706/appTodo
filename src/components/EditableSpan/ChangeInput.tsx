@@ -25,7 +25,6 @@ export const ChangeInput = React.memo( function (props:changeInputType){
     }
 
     function EnterInput(e:KeyboardEvent<HTMLInputElement>){
-        console.log(e.charCode)
         if(e.charCode===13) {
             setEditMode(false)
             props.onChange(title)
