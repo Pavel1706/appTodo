@@ -14,7 +14,7 @@ export const tasksReducer = (state: TasksStateType = initialState, action: AllTa
         case 'REMOVE-TASK':
             return {
                 ...state,
-                [action.todolistId]: state[action.todolistId].filter(t => t.id != action.id)
+                [action.todolistId]: state[action.todolistId].filter(t => t.id !== action.id)
             }
         case 'ADD-TASK':
             return {
